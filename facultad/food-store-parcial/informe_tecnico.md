@@ -5,7 +5,7 @@ Fabri — Base de Datos II — PostgreSQL 18 + DBeaver (Manual) — Repo: food-s
 - **Unidad 1 (TP1, `food-store-tp1/`):** modelo ER (diagrama), pasaje a relacional con N:M resuelta en `pedido_producto`, normalización hasta 3FN/BCNF con dependencias funcionales, DDL en `Food Store.sql`: ENUM `forma_pago_enum`, IDENTITY, TIMESTAMPTZ, PK/FK con acciones justificadas, UNIQUE, CHECKs, flags de baja lógica con DEFAULT.
 - **Unidad 2 (TP2, `food-store-tp2/`):** reglas R1/R2 con funciones + triggers PL/pgSQL, transacciones (3 escenarios: no repetible, fantasma, bloqueo, con READ COMMITTED vs REPEATABLE READ), protocolo copia-transacción-respaldo.
 - **Unidad 3 (TP3/TP4/TP5):** carga masiva 200k (TP3), plan de indexado con EXPLAIN ANALYZE (TP3: 2.07x/1.46x; TP4: covering no efectivas documentadas; TP5: Q1 1393x, Q2 38.6x, Q3 no efectiva), vistas + MV con índice único (TP5), ventanas RANK y anti-joins (TP4).
-- **Cierre TPI (`tpi-parcial/`):** consulta con HAVING, procedimiento `sp_baja_producto` + CALL, demo de borrado lógico.
+- **Cierre (`food-store-parcial/`):** consulta con HAVING, procedimiento `sp_baja_producto` + CALL, demo de borrado lógico.
 
 ## 2. Cómo se probó el funcionamiento
 Siempre sobre `food_store_copia` (jamás la dev), DBeaver en Manual, respaldo previo. DDL structural con COMMIT; experimentos con ROLLBACK. Cada objeto: spec Kiro → generación OpenCode → lectura línea por línea → EXPLAIN/SELECT de verificación → EXCEPT en ambos sentidos para equivalencias.
