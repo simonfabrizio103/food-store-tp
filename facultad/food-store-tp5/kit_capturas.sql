@@ -29,7 +29,7 @@ WHERE cantidad>=4 AND precio_unitario>400;
 -- CREATE INDEX idx_pedprod_cantidad_precio ON pedido_producto(cantidad, precio_unitario);
 -- ANALYZE pedido; ANALYZE producto; ANALYZE pedido_producto;
 
--- BLOQUE 3 (DESPUES): repetir los 3 EXPLAIN de BLOQUE 1 — 3 capturas
+-- BLOQUE 3 (Después): repetir los 3 EXPLAIN de BLOQUE 1 — 3 capturas
 -- (mismo texto, pegar de nuevo para que el plan use los índices)
 
 -- BLOQUE 4: costo escritura — 2 capturas timing
@@ -42,7 +42,7 @@ SELECT (SELECT MAX(id_pedido) FROM pedido)-499+g.i,
 FROM generate_series(1,500) AS g(i);
 -- anotar tiempo -> ROLLBACK;
 ROLLBACK;
--- DESPUES de crear índices: repetir mismo bloque -> anotar tiempo -> ROLLBACK;
+-- Después de crear índices: repetir mismo bloque -> anotar tiempo -> ROLLBACK;
 
 -- BLOQUE 5: vistas + equivalencia — 4 capturas
 -- Ejecutar views.sql por bloques (V1, V2, V3), luego:

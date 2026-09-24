@@ -16,7 +16,7 @@ CREATE TABLE cliente (
     id_cliente BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE, -- Restricción UNIQUE exigida (Regla R6)
-    telefono VARCHAR(20) -- Nulable, participación parcial
+    telefono VARCHAR(20) -- Anulable, participación parcial
 );
 
 CREATE TABLE categoria (

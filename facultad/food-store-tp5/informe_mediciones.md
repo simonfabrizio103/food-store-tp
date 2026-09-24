@@ -7,7 +7,7 @@
 | detalle_pedido | pedido_producto | `pedido_producto(id_pedido,id_producto,cantidad,precio_unitario)` |
 | usuario.contraseña | cliente.telefono | sensible, oculta en V2 |
 | pedido.estado / eliminado | — (no existe) | equivalente: `forma_pago` + rango `fecha` |
-| producto.vigente | producto.activo + categoria.activa | filtro de vigencia |
+| producto.vigente | producto.activo + categoría.activa | filtro de vigencia |
 
 ## Parte A — EXPLAIN ANALYZE antes / después (capturas 01–07)
 
@@ -42,7 +42,7 @@ WHERE cantidad>=4 AND precio_unitario>400;
 - **Antes [04]:** `Seq Scan on pedido_producto 200k`, `Filter`, `Rows Removed 120000`, `Exec 19.779 ms`, 80000 filas.
 - **Índice:** `CREATE INDEX idx_pedprod_cantidad_precio ON pedido_producto(cantidad, precio_unitario); + ANALYZE pedido_producto;`
 - **Después [07]:** sigue `Seq Scan`, `Exec 14.065 ms` (1.4x, ruido de caché hit vs read).
-- **NO efectiva (documentada):** 80k/200k = 40% selectividad y `precio>400` matchea 100% (todo vale 500 por R1). El optimizador hace bien en secuencial.
+- **NO efectiva (documentada):** 80k/200k = 40% selectividad y `precio>400` coincide con el 100% (todo vale 500 por R1). El optimizador hace bien en secuencial.
 
 ### Índice descartado (sobreindexación, punto 4.1.6)
 - Propuesta IA: `CREATE INDEX idx_pedido_forma_pago ON pedido(forma_pago);` — **NO creada**.

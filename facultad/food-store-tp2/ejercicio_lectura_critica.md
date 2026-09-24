@@ -37,7 +37,7 @@ WHERE id NOT IN (SELECT categoria_id FROM producto);
 ```
 
 **Qué filas afectaría realmente:**
-Si la subconsulta `SELECT categoria_id FROM producto` devuelve al menos un `NULL` (categoria_id nulable), la condición `NOT IN` se evalúa a `UNKNOWN` para todas las filas y **NO BORRA NINGUNA** categoría, aunque haya categorías vacías. Es el bug clásico de `NOT IN` vs `NULL`.
+Si la subconsulta `SELECT categoria_id FROM producto` devuelve al menos un `NULL` (categoria_id anulable), la condición `NOT IN` se evalúa a `UNKNOWN` para todas las filas y **NO BORRA NINGUNA** categoría, aunque haya categorías vacías. Es el bug clásico de `NOT IN` vs `NULL`.
 
 **Por qué no coincide con la consigna:**
 Debería borrar solo categorías sin productos, pero por el NULL no borra nada o borra de forma impredecible.

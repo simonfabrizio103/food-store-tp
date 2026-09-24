@@ -1,6 +1,6 @@
 -- ============================================================
 -- TP3 Parte 4 - Consultas resumen y subconsulta con spec + EXCEPT
--- Esquema real: categoria(id_categoria,nombre,activa),
+-- Esquema real: categoría(id_categoria,nombre,activa),
 -- producto(id_producto,nombre,precio_lista,stock,activo,id_categoria),
 -- cliente(id_cliente,nombre,email), pedido(id_pedido,fecha,forma_pago,id_cliente),
 -- pedido_producto(id_pedido,id_producto,cantidad,precio_unitario)

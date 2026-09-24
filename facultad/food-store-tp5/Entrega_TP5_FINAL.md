@@ -15,7 +15,7 @@ Mapeo consigna → real: `usuario` es `cliente`, `detalle_pedido` es `pedido_pro
 Q1 da 0 filas (junio-2025 fuera de la carga NOW()-365); igual prueba Seq→Index (1471 páginas a 6 buffers). Q3 no usa el índice (40% selectividad, correcto) y se documenta como no efectiva. Descartada sin crear: `idx_pedido_forma_pago` (un valor, redundante con IDX1). Escritura 500+500 con RETURNING + ROLLBACK: 0.03 s [08].
 
 ## 3. Parte B — Vistas
-V1 50002 [09], V2 200001 sin telefono [10][12], V3 200000 [11]. EXCEPT ambos sentidos = 0 [13].
+V1 50002 [09], V2 200001 sin teléfono [10][12], V3 200000 [11]. EXCEPT ambos sentidos = 0 [13].
 
 ## 4. Parte C — Materializada
 Q-A TP4 ~430 ms → `mv_facturacion_categoria_mes` 0.038 ms [14] (~11300x). `WITH DATA` + índice único `(id_categoria, mes)`. Refresh diario 02:00 `CONCURRENTLY`, desfase 24 h (gerencial sí, caja no).

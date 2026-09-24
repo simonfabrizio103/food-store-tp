@@ -1,6 +1,6 @@
 -- ============================================================
--- TP5 Parte A — indices.sql (Food Store, base food_store_copia)
--- Esquema real: categoria, producto, cliente (=usuario),
+-- TP5 Parte A — índices.sql (Food Store, base food_store_copia)
+-- Esquema real: categoría, producto, cliente (=usuario),
 --   pedido, pedido_producto (=detalle_pedido)
 -- Protocolo cátedra: probar en COPIA + transacción + ANALYZE.
 -- Preexistentes TP3/TP4: idx_producto_categoria, idx_pedido_cliente,

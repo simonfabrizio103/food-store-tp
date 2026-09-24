@@ -5,7 +5,7 @@ Alumno: Fabri — Base: food_store_copia — Motor: PostgreSQL 18 + DBeaver
 | # | Herramienta | Propósito | Spec entregado | Propuesta IA | Decisión |
 |---|---|---|---|---|---|
 | 1 | Kiro | Especificar IDX1 reporte mensual | spec_indice_pedido_fecha_forma.md (consulta, frecuencia diaria, cols fecha+forma_pago, criterio Seq→Index) | Índice compuesto (fecha, forma_pago) | ACEPTADO: ataca Seq Scan 200k, rango selectivo |
-| 2 | Kiro | Especificar IDX2 stock bajo | spec_indice_producto_stock.md (igualdad categoria + rango stock + parcial activo) | Compuesto parcial (id_categoria, stock) INCLUDE(nombre) WHERE activo | ACEPTADO: parcial más chico, Index-Only |
+| 2 | Kiro | Especificar IDX2 stock bajo | spec_indice_producto_stock.md (igualdad categoría + rango stock + parcial activo) | Compuesto parcial (id_categoria, stock) INCLUDE(nombre) WHERE activo | ACEPTADO: parcial más chico, Index-Only |
 | 3 | Kiro | Especificar IDX3 detalle | spec_indice_detalle_cantidad.md (rango cantidad+precio sobre 200k) | Compuesto (cantidad, precio_unitario) | CREADO pero NO efectivo: sigue Seq Scan (40% selectividad, correcto). Se documenta igual |
 | 4 | Kiro | Especificar sobreindexación | spec_indice_descartado.md | idx_pedido_forma_pago ON (forma_pago) | DESCARTADO: baja cardinalidad (100% EFECTIVO), sin parcial, redundante con IDX1. Suma escritura sin uso |
 | 5 | Kiro | Especificar V1/V2/V3 | spec_vista_*.md (columnas, filtro vigencia, columna a ocultar) | 3 vistas + equivalencia manual | ACEPTADAS: EXCEPT 0 / conteo+muestra |

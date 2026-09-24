@@ -1,6 +1,6 @@
 -- ============================================================
 -- TP3 Parte 1 - Carga masiva Food Store (food_store_copia)
--- Tablas reales: categoria, cliente, pedido, pedido_producto, producto
+-- Tablas reales: categoría, cliente, pedido, pedido_producto, producto
 -- Restricciones detectadas en tu base:
 --  cliente_pkey, cliente_email UNIQUE(email),
 --  producto_precio_lista CHECK(precio_lista>=0),
@@ -12,7 +12,7 @@
 -- Columnas producto (deducidas 6 filas):
 --  id_producto, nombre, precio_lista, stock, activo, id_categoria
 --  !! VERIFICAR fila 1-3 antes de ejecutar (error 42703 si difiere)
--- Protocolo cátedra: COPIA + TRANSACCION + RESPALDO + ANALYZE
+-- Protocolo cátedra: COPIA + Transacción + RESPALDO + ANALYZE
 -- ============================================================
 -- PASO 0 (fuera de este script, una sola vez):
 --  1. COPIA: CREATE DATABASE food_store_copia WITH TEMPLATE food_store_dev;
@@ -34,7 +34,7 @@ FROM (SELECT COALESCE(MAX(id_categoria), 0) AS max_id FROM categoria) m
 CROSS JOIN generate_series(1, 9) AS g(i)
 WHERE (SELECT COUNT(*) FROM categoria) < 10
 ON CONFLICT (id_categoria) DO NOTHING;
--- Verificación: SELECT COUNT(*) FROM categoria; -- debe dar 10
+-- Verificación: SELECT COUNT(*) FROM categoría; -- debe dar 10
 
 -- ------------------------------------------------------------
 -- 2. 50.000 productos repartidos parejo entre categorías
@@ -136,7 +136,7 @@ COMMIT;
 -- 8. FUERA de la transacción: actualizar estadísticas del optimizador
 -- Obligatorio por TP Parte 1 punto 4 antes de medir EXPLAIN ANALYZE
 -- ------------------------------------------------------------
--- ANALYZE categoria;
+-- ANALYZE categoría;
 -- ANALYZE producto;
 -- ANALYZE cliente;
 -- ANALYZE pedido;

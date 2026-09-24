@@ -8,7 +8,7 @@ Fabri — Base de Datos II — PostgreSQL 18 + DBeaver (Manual) — Repo: food-s
 - **Cierre (`food-store-parcial/`):** consulta con HAVING, procedimiento `sp_baja_producto` + CALL, demo de borrado lógico.
 
 ## 2. Cómo se probó el funcionamiento
-Siempre sobre `food_store_copia` (jamás la dev), DBeaver en Manual, respaldo previo. DDL structural con COMMIT; experimentos con ROLLBACK. Cada objeto: spec Kiro → generación OpenCode → lectura línea por línea → EXPLAIN/SELECT de verificación → EXCEPT en ambos sentidos para equivalencias.
+Siempre sobre `food_store_copia` (jamás la dev), DBeaver en Manual, respaldo previo. DDL estructural con COMMIT; experimentos con ROLLBACK. Cada objeto: spec Kiro → generación OpenCode → lectura línea por línea → EXPLAIN/SELECT de verificación → EXCEPT en ambos sentidos para equivalencias.
 
 ## 3. Qué resultados se obtuvieron
 | Objetivo | Evidencia | Resultado |
