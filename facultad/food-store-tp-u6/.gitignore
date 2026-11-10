@@ -1,0 +1,12 @@
+# Python y temporales
+__pycache__/
+*.py[cod]
+*$py.class
+*.tmp
+
+# Sistema operativo e IDEs
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store
+.idea/
+.vscode/
