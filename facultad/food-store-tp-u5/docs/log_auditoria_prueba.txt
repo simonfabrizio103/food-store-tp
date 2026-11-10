@@ -1,0 +1,43 @@
+======================================================================
+TP Unidad 5 - Parte B: fragmento real del log de auditoria
+Servidor: PostgreSQL 18 (localhost:5432)
+Archivo de origen: postgresql-2026-11-08_150912.log
+Ventana extraida: 2026-11-08 21:32:13 a 21:32:16 (-03)
+Configuracion activa: log_connections=on, log_disconnections=on, log_statement=all
+======================================================================
+
+2026-11-08 21:32:13 -03 LOG:  conexión recibida: host=::1 port=57238
+2026-11-08 21:32:13 -03 LOG:  conexión autenticada: identidad=«admin_datos» método=scram-sha-256 (C:/Program Files/PostgreSQL/18/data/pg_hba.conf:117)
+2026-11-08 21:32:13 -03 LOG:  conexión autorizada: usuario=admin_datos base_de_datos=postgres nombre_de_aplicación=psql
+2026-11-08 21:32:13 -03 LOG:  sentencia: SHOW log_connections;
+2026-11-08 21:32:13 -03 LOG:  sentencia: SHOW log_disconnections;
+2026-11-08 21:32:13 -03 LOG:  sentencia: SHOW log_statement;
+2026-11-08 21:32:13 -03 LOG:  sentencia: SHOW log_directory;
+2026-11-08 21:32:13 -03 ERROR:  se ha denegado el permiso a examinar «log_directory»
+2026-11-08 21:32:13 -03 DETALLE:  Sólo roles con privilegios del rol «pg_read_all_settings» pueden examinar este parámetro.
+2026-11-08 21:32:13 -03 SENTENCIA:  SHOW log_directory;
+2026-11-08 21:32:13 -03 LOG:  sentencia: SHOW data_directory;
+2026-11-08 21:32:13 -03 ERROR:  se ha denegado el permiso a examinar «data_directory»
+2026-11-08 21:32:13 -03 DETALLE:  Sólo roles con privilegios del rol «pg_read_all_settings» pueden examinar este parámetro.
+2026-11-08 21:32:13 -03 SENTENCIA:  SHOW data_directory;
+2026-11-08 21:32:13 -03 LOG:  sentencia: SELECT id, nombre, rol
+	FROM usuario
+	WHERE activo = TRUE
+	ORDER BY id
+	LIMIT 3;
+2026-11-08 21:32:13 -03 LOG:  sentencia: INSERT INTO pedido (id, fecha, usuario_id, eliminado)
+	VALUES (9999, CURRENT_DATE, 2, FALSE);
+2026-11-08 21:32:13 -03 LOG:  sentencia: UPDATE pedido
+	SET eliminado = TRUE
+	WHERE id = 9999;
+2026-11-08 21:32:13 -03 LOG:  sentencia: SELECT * FROM fn_autenticar('admin@foodstore.com', 'password_incorrecta');
+2026-11-08 21:32:13 -03 LOG:  sentencia: DELETE FROM pedido WHERE id = 9999;
+2026-11-08 21:32:13 -03 LOG:  desconexión: duración de sesión: 0:00:00.033 usuario=admin_datos base=postgres host=::1 port=57238
+2026-11-08 21:32:16 -03 LOG:  conexión recibida: host=::1 port=57246
+2026-11-08 21:32:16 -03 FATAL:  la autentificación password falló para el usuario «app_web»
+2026-11-08 21:32:16 -03 DETALLE:  La conexión coincidió con el archivo «C:/Program Files/PostgreSQL/18/data/pg_hba.conf» línea 117: «host    all             all             ::1/128                 scram-sha-256»
+2026-11-08 21:32:16 -03 LOG:  conexión recibida: host=::1 port=55525
+2026-11-08 21:32:16 -03 LOG:  conexión autenticada: identidad=«app_web» método=scram-sha-256 (C:/Program Files/PostgreSQL/18/data/pg_hba.conf:117)
+2026-11-08 21:32:16 -03 LOG:  conexión autorizada: usuario=app_web base_de_datos=postgres nombre_de_aplicación=psql
+2026-11-08 21:32:16 -03 LOG:  sentencia: SELECT current_user, now();
+2026-11-08 21:32:16 -03 LOG:  desconexión: duración de sesión: 0:00:00.025 usuario=app_web base=postgres host=::1 port=55525
