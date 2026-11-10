@@ -1,0 +1,41 @@
+﻿=====================================================================
+1. TAMA├æO TOTAL DE LA BASE DE DATOS
+=====================================================================
+ base_de_datos | tamano_total 
+---------------+--------------
+ foodstore     | 96 MB
+(1 fila)
+
+=====================================================================
+2. ACTIVIDAD DE CONEXIONES Y ESTAD├ìSTICAS TRANSACCIONALES
+=====================================================================
+ base_de_datos | conexiones_activas | transacciones_confirmadas | transacciones_abortadas | porcentaje_exito_transacciones 
+---------------+--------------------+---------------------------+-------------------------+--------------------------------
+ foodstore     |                  1 |                        80 |                       1 |                          98.77
+(1 fila)
+
+=====================================================================
+3. ESTADO DE TABLAS: TUPLAS VIVAS, TUPLAS MUERTAS Y AUTONOM├ìA
+=====================================================================
+           tabla            | tuplas_vivas | tuplas_muertas | porcentaje_muertas | ultimo_autovacuum | ultimo_autoanalyze 
+----------------------------+--------------+----------------+--------------------+-------------------+--------------------
+ pedido_producto            |       200000 |           1500 |               0.74 | Nunca             | Nunca
+ pedido                     |       200001 |           1000 |               0.50 | Nunca             | Nunca
+ producto                   |        50002 |              0 |               0.00 | Nunca             | Nunca
+ cliente                    |        20001 |              0 |               0.00 | Nunca             | Nunca
+ categoria                  |           10 |              0 |               0.00 | Nunca             | Nunca
+ deposito                   |            0 |              0 |                  0 | Nunca             | Nunca
+ usuario                    |            0 |              0 |                  0 | Nunca             | Nunca
+ responsable_control        |            0 |              0 |                  0 | Nunca             | Nunca
+ control_lote_almacen       |            0 |              0 |                  0 | Nunca             | Nunca
+ lote                       |            0 |              0 |                  0 | Nunca             | Nunca
+ control_lote_almacen_nuevo |            0 |              0 |                  0 | Nunca             | Nunca
+(11 filas)
+
+=====================================================================
+4. SESIONES Y CONSULTAS EN EJECUCI├ôN (NO IDLE)
+=====================================================================
+ pid | usuario | direccion_ip | estado | duracion | consulta_activa 
+-----+---------+--------------+--------+----------+-----------------
+(0 filas)
+
