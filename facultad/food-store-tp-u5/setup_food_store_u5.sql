@@ -1,6 +1,6 @@
-﻿-- ============================================================================
--- Setup completo para TP Unidad 5 ÔÇö Food Store
--- Crea las tablas de Food Store (unidades 1-4) + funciones de autenticaci├│n
+-- ============================================================================
+-- Setup completo para TP Unidad 5 — Food Store
+-- Crea las tablas de Food Store (unidades 1-4) + funciones de autenticación
 -- Ejecutar en la base de datos que uses para el TP U5 (recomendado: food_store_copia)
 -- ============================================================================
 
@@ -74,12 +74,15 @@ CREATE TABLE lote (
 );
 
 -- ----------------------------------------------------------------------------
--- 2. Funciones de autenticaci├│n (Clase 2)
+-- 2. Funciones de autenticación (Clase 2)
 -- ----------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION fn_autenticar(p_email TEXT, p_password TEXT)
 RETURNS TABLE(usuario_id BIGINT, nombre TEXT, rol TEXT, autenticado BOOLEAN)
-LANGUAGE plpgsql AS $$
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
 BEGIN
     RETURN QUERY
     SELECT u.id, u.nombre, u.rol,
@@ -89,9 +92,14 @@ BEGIN
 END;
 $$;
 
+ALTER FUNCTION fn_autenticar(text, text) OWNER TO admin_datos;
+
 CREATE OR REPLACE FUNCTION fn_resetear_password(p_email TEXT, p_nueva_password TEXT)
 RETURNS BOOLEAN
-LANGUAGE plpgsql AS $$
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
 BEGIN
     UPDATE usuario
     SET password_hash = md5(p_nueva_password)
@@ -100,16 +108,18 @@ BEGIN
 END;
 $$;
 
+ALTER FUNCTION fn_resetear_password(text, text) OWNER TO admin_datos;
+
 -- ----------------------------------------------------------------------------
 -- 3. Datos de ejemplo
 -- ----------------------------------------------------------------------------
 
 INSERT INTO categoria (id, nombre) VALUES
     (1, 'Bebidas'),
-    (2, 'L├ícteos'),
-    (3, 'Panader├¡a'),
+    (2, 'Lácteos'),
+    (3, 'Panadería'),
     (4, 'Limpieza'),
-    (5, 'Verduler├¡a');
+    (5, 'Verdulería');
 
 INSERT INTO producto (id, nombre, categoria_id, precio, stock) VALUES
     (101, 'Coca Cola 2.25L', 1, 1290, 100),
@@ -119,18 +129,18 @@ INSERT INTO producto (id, nombre, categoria_id, precio, stock) VALUES
     (105, 'Pan de molde', 3, 320, 60),
     (106, 'Facturas docena', 3, 850, 40),
     (107, 'Detergente lavanda', 4, 580, 90),
-    (108, 'Jab├│n lavavajillas', 4, 420, 120),
+    (108, 'Jabón lavavajillas', 4, 420, 120),
     (109, 'Tomate 1kg', 5, 680, 70),
     (110, 'Papa 1kg', 5, 340, 110);
 
 -- Usuarios con passwords hasheadas (md5 de 'password123')
 INSERT INTO usuario (id, email, nombre, rol, fecha_alta, activo, password_hash) VALUES
     (1, 'admin@foodstore.com',    'Administrador', 'admin',    '2024-01-15', TRUE,  md5('password123')),
-    (2, 'vendedor1@foodstore.com','Juan P├®rez',    'vendedor', '2024-02-10', TRUE,  md5('password123')),
-    (3, 'vendedor2@foodstore.com','Mar├¡a G├│mez',   'vendedor', '2024-03-05', TRUE,  md5('password123')),
+    (2, 'vendedor1@foodstore.com','Juan Pérez',    'vendedor', '2024-02-10', TRUE,  md5('password123')),
+    (3, 'vendedor2@foodstore.com','María Gómez',   'vendedor', '2024-03-05', TRUE,  md5('password123')),
     (4, 'soporte@foodstore.com',  'Carlos Ruiz',   'soporte',  '2024-04-20', TRUE,  md5('password123')),
-    (5, 'reportes@foodstore.com', 'Ana L├│pez',     'reportes', '2024-05-12', TRUE,  md5('password123')),
-    (6, 'inactivo@foodstore.com', 'Pedro D├¡az',    'vendedor', '2024-06-01', FALSE, md5('password123'));
+    (5, 'reportes@foodstore.com', 'Ana López',     'reportes', '2024-05-12', TRUE,  md5('password123')),
+    (6, 'inactivo@foodstore.com', 'Pedro Díaz',    'vendedor', '2024-06-01', FALSE, md5('password123'));
 
 INSERT INTO pedido (id, fecha, usuario_id, eliminado) VALUES
     (1001, CURRENT_DATE, 2, FALSE),
@@ -154,16 +164,16 @@ INSERT INTO detalle_pedido (id, pedido_id, producto_id, cantidad, subtotal, elim
     (10012, 1001, 110, 1, 340,  TRUE);
 
 INSERT INTO deposito (id, nombre) VALUES
-    (30, 'Dep├│sito Central'),
-    (31, 'Dep├│sito Norte');
+    (30, 'Depósito Central'),
+    (31, 'Depósito Norte');
 
 INSERT INTO lote (id, descripcion) VALUES
     (501, 'Lote de bebidas'),
-    (502, 'Lote de l├ícteos'),
-    (503, 'Lote de panader├¡a');
+    (502, 'Lote de lácteos'),
+    (503, 'Lote de panadería');
 
 -- ----------------------------------------------------------------------------
--- 4. Tabla usuario_anon (para Parte D ÔÇö anonimizaci├│n)
+-- 4. Tabla usuario_anon (para Parte D — anonimización)
 -- ----------------------------------------------------------------------------
 
 CREATE TABLE usuario_anon (
