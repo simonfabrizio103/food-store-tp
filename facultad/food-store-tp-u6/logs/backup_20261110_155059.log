@@ -1,0 +1,16 @@
+﻿================================================================================
+RESPALDO AUTOMATIZADO DE FOOD STORE (UNIDAD 6)
+Fecha y hora de inicio : 2026-11-10 15:51:00
+Motor de base de datos : PostgreSQL
+Base de datos origen   : foodstore
+Host / Puerto / Usuario: localhost:5432 / postgres
+Archivo de destino     : C:\Users\Fabri\OneDrive\Documentos\Base de datos\tp-unidad-6\backups\foodstore_20261110_155059.dump
+Formato                : Custom (-Fc, comprimido)
+================================================================================
+--------------------------------------------------------------------------------
+ESTADO: EXITOSO
+Tiempo transcurrido    : 1,06 segundos
+TamaÃ±o del volcado     : 3752831 bytes (3.58 MB)
+CÃ³digo de retorno      : 0
+Fecha y hora de fin    : 2026-11-10 15:51:01
+================================================================================
