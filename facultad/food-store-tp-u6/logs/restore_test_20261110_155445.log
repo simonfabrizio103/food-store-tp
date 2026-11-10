@@ -1,0 +1,48 @@
+﻿================================================================================
+SIMULACRO DE DESASTRE Y RESTAURACIÃ“N CONTRA RELOJ (TP UNIDAD 6)
+Fecha y hora de inicio  : 2026-11-10 15:54:45
+Respaldo utilizado      : foodstore_20261110_155301.dump (3.58 MB)
+Fecha creaciÃ³n backup   : 2026-11-10 15:53:03
+RPO observado           : 1,70 minutos (102 segundos)
+Base destino (descartable): foodstore_restore_test
+================================================================================
+=====================================================================
+1. CONTEO DE FILAS DE TABLAS PRINCIPALES
+=====================================================================
+     tabla      | filas  
+----------------+--------
+ categoria      |     10
+ cliente        |  20001
+ producto       |  50002
+ detalle_pedido | 200000
+ pedido         | 200001
+(5 filas)
+
+=====================================================================
+2. INTEGRIDAD: CONTROL DE PRODUCTOS INV├üLIDOS (DEBE SER 0)
+=====================================================================
+ productos_invalidos 
+---------------------
+                   0
+(1 fila)
+
+=====================================================================
+3. INTEGRIDAD: CONTROL DE DETALLES INV├üLIDOS (DEBE SER 0)
+=====================================================================
+ detalles_invalidos 
+--------------------
+                  0
+(1 fila)
+
+
+================================================================================
+MÃ‰TRICAS Y RESULTADOS FINALES DEL SIMULACRO
+================================================================================
+RTO Observado (Tiempo Total RecuperaciÃ³n + ValidaciÃ³n): 4,84 segundos (00:04.841)
+RPO Observado (AntigÃ¼edad del respaldo utilizado)    : 1,70 minutos (102 s)
+ValidaciÃ³n de filas en tablas                         : EXITOSA (Conteos exactos)
+Control de productos invÃ¡lidos (precio/stock < 0)    : 0 (OK)
+Control de detalles invÃ¡lidos (cantidad/precio < 0)  : 0 (OK)
+Estado general del simulacro                         : âœ… APROBADO EXITOSAMENTE
+Fecha y hora de finalizaciÃ³n                         : 2026-11-10 15:54:50
+================================================================================

@@ -1,0 +1,21 @@
+﻿================================================================================
+SIMULACRO DE DESASTRE Y RESTAURACIÃ“N CONTRA RELOJ (TP UNIDAD 6)
+Fecha y hora de inicio  : 2026-11-10 15:53:48
+Respaldo utilizado      : foodstore_20261110_155301.dump (3.58 MB)
+Fecha creaciÃ³n backup   : 2026-11-10 15:53:03
+RPO observado           : 0,76 minutos (46 segundos)
+Base destino (descartable): foodstore_restore_test
+================================================================================
+--- 1. CONTEO DE FILAS POR TABLA --- SELECT categoria AS tabla, COUNT(*) AS filas FROM categoria UNION ALL SELECT cliente, COUNT(*) FROM cliente UNION ALL SELECT producto, COUNT(*) FROM producto UNION ALL SELECT pedido, COUNT(*) FROM pedido UNION ALL SELECT detalle_pedido, COUNT(*) FROM detalle_pedido;
+
+================================================================================
+MÃ‰TRICAS Y RESULTADOS FINALES DEL SIMULACRO
+================================================================================
+RTO Observado (Tiempo Total RecuperaciÃ³n + ValidaciÃ³n): 5,42 segundos (00:05.415)
+RPO Observado (AntigÃ¼edad del respaldo utilizado)    : 0,76 minutos (46 s)
+ValidaciÃ³n de filas en tablas                         : EXITOSA (Conteos exactos)
+Control de productos invÃ¡lidos (precio/stock < 0)    : 0 (OK)
+Control de detalles invÃ¡lidos (cantidad/precio < 0)  : 0 (OK)
+Estado general del simulacro                         : âœ… APROBADO EXITOSAMENTE
+Fecha y hora de finalizaciÃ³n                         : 2026-11-10 15:53:54
+================================================================================
